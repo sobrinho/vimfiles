@@ -1,10 +1,10 @@
-" gui
+" colors
+syntax on
+
 set guifont=Monaco:h14
 set background=dark
 
-" colors
-syntax on
-colorscheme molokai
+colorscheme solarized
 
 " style
 set number
