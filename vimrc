@@ -35,5 +35,8 @@ endif
 " ruby
 au BufRead,BufNewFile config.ru set ft=ruby
 
+" RSpec
+map , :w\|!rspec --format documentation %<CR>
+
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
