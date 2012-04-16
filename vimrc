@@ -11,7 +11,6 @@ set number
 set autoindent
 
 " whitespace
-set nowrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
