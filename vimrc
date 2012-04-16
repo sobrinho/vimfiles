@@ -33,7 +33,7 @@ if has("autocmd")
 endif
 
 " ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
+au BufRead,BufNewFile config.ru set ft=ruby
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
