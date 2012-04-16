@@ -37,6 +37,3 @@ au BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
-
-" Expand path in command
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
