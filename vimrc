@@ -1,3 +1,6 @@
+" pathogen
+call pathogen#infect()
+
 " colors
 syntax on
 
