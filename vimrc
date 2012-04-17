@@ -31,14 +31,24 @@ set incsearch
 set ignorecase
 set smartcase
 
+" This tip is an improved version of the example given for :help last-position-jump.
+" It fixes a problem where the cursor position will not be restored if the file only has a single line.
+"
+" See: http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
 " NERDTree
 map <Leader>n :NERDTreeToggle<CR>
-
-" remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-endif
 
 " RSpec
 map , :w\|!rspec --format documentation %<CR>
