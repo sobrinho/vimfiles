@@ -5,7 +5,12 @@ call pathogen#infect()
 syntax on
 
 set guifont=Monaco:h14
-set background=dark
+
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
 
 colorscheme solarized
 
