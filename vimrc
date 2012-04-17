@@ -40,9 +40,6 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-" ruby
-au BufRead,BufNewFile config.ru set ft=ruby
-
 " RSpec
 map , :w\|!rspec --format documentation %<CR>
 
