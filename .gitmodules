@@ -1,3 +1,6 @@
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/endwise.vim"]
+	path = bundle/endwise.vim
+	url = https://github.com/tpope/vim-endwise.git
