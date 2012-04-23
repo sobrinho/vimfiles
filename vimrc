@@ -36,6 +36,9 @@ set smartcase
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
 
+" Keep more context when scrolling off the end of a buffer
+set scrolloff=3
+
 " This tip is an improved version of the example given for :help last-position-jump.
 " It fixes a problem where the cursor position will not be restored if the file only has a single line.
 "
