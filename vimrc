@@ -67,6 +67,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" Ruby
+imap <c-l> <space>=><space>
+
 " RSpec
 map , :w\|!rspec --format documentation %<CR>
 
