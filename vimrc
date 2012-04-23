@@ -70,5 +70,8 @@ nnoremap <c-l> <c-w>l
 " RSpec
 map , :w\|!rspec --format documentation %<CR>
 
+" Clear the search buffer when hitting return
+nnoremap <cr> :nohlsearch<cr>
+
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
