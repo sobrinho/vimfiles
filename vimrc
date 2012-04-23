@@ -32,6 +32,10 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
+
 " This tip is an improved version of the example given for :help last-position-jump.
 " It fixes a problem where the cursor position will not be restored if the file only has a single line.
 "
