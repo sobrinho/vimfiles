@@ -71,7 +71,7 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 
 " RSpec
-map , :w\|!rspec --format documentation %<CR>
+map , :w\|!bundle exec rspec --format documentation %<CR>
 
 " Clear the search buffer when hitting return
 nnoremap <cr> :nohlsearch<cr>
