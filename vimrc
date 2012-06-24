@@ -32,6 +32,9 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Display incomplete commands
+set showcmd
+
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
