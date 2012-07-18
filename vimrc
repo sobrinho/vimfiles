@@ -74,8 +74,8 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 
 " RSpec
-map <Leader>r :call RunTest()<CR>
-map <Leader>R :call RunNearestTest()<CR>
+map <Leader>, :call RunTest()<CR>
+map <Leader>. :call RunNearestTest()<CR>
 
 function! RunTest()
   call RunTestFile(FindTestFile())
