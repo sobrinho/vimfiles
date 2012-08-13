@@ -89,7 +89,7 @@ function! FindTestFile()
   let current_file = expand("%")
   let spec_file = current_file
 
-  if match(current_file, '_spec.rb$') == -1
+  if match(current_file, '.feature$') == -1 && match(current_file, '_spec.rb$') == -1
     let spec_file = substitute(spec_file, '^app/', '', '')
     let spec_file = substitute(spec_file, '.rb$', '_spec.rb', '')
 
