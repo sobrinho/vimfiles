@@ -103,9 +103,9 @@ function! RunTestFile(filename)
   write
 
   if filereadable('bin/rspec')
-    exec ":!bin/rspec --format documentation " . a:filename
+    exec ":!bin/rspec " . a:filename
   else
-    exec ":!bundle exec rspec --format documentation " . a:filename
+    exec ":!bundle exec rspec " . a:filename
   endif
 endfunction
 
