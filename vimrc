@@ -35,10 +35,6 @@ set smartcase
 " Display incomplete commands
 set showcmd
 
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
-
 " Keep more context when scrolling off the end of a buffer
 set scrolloff=3
 
