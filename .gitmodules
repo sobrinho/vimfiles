@@ -37,3 +37,6 @@
 [submodule "bundle/puppet.vim"]
 	path = bundle/puppet.vim
 	url = git@github.com:rodjek/vim-puppet.git
+[submodule "bundle/repeat.vim"]
+	path = bundle/repeat.vim
+	url = git@github.com:tpope/vim-repeat.git
