@@ -1,5 +1,5 @@
 " pathogen
-call pathogen#infect()
+execute pathogen#infect()
 
 " colors
 syntax on

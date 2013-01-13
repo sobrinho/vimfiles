@@ -5,8 +5,8 @@
 " Install in ~/.vim/autoload (or ~\vimfiles\autoload).
 "
 " For management of individually installed plugins in ~/.vim/bundle (or
-" ~\vimfiles\bundle), adding `call pathogen#infect()` to your .vimrc
-" prior to `filetype plugin indent on` is the only other setup necessary.
+" ~\vimfiles\bundle), adding `call pathogen#infect()` to the top of your
+" .vimrc is the only other setup necessary.
 "
 " The API is documented inline below.  For maximum ease of reading,
 " :set foldmethod=marker
@@ -17,17 +17,26 @@ endif
 let g:loaded_pathogen = 1
 
 " Point of entry for basic default usage.  Give a directory name to invoke
-" pathogen#runtime_append_all_bundles() (defaults to "bundle"), or a full path
-" to invoke pathogen#runtime_prepend_subdirectories().  Afterwards,
-" pathogen#cycle_filetype() is invoked.
+" pathogen#incubate() (defaults to "bundle"), or a full path to invoke
+" pathogen#surround().  For backwards compatibility purposes, a full path that
+" does not end in {} or * is given to pathogen#runtime_prepend_subdirectories()
+" instead.
 function! pathogen#infect(...) abort " {{{1
   let source_path = a:0 ? a:1 : 'bundle'
-  if source_path =~# '[\\/]'
-    call pathogen#runtime_prepend_subdirectories(source_path)
+  if source_path =~# '[\\/]\%({}\|\*\)$'
+    call pathogen#surround(source_path)
+  elseif source_path =~# '[\\/]'
+    if &verbose
+      echohl WarningMsg
+      echomsg 'pathogen#infect() will soon require a trailing "/{}" to absolute paths'
+      echohl NONE
+    endif
+    call pathogen#surround(source_path.'/{}')
   else
-    call pathogen#runtime_append_all_bundles(source_path)
+    call pathogen#incubate(source_path)
   endif
   call pathogen#cycle_filetype()
+  return ''
 endfunction " }}}1
 
 " Split a path into a list.
@@ -111,8 +120,9 @@ function! pathogen#cycle_filetype() " {{{1
   endif
 endfunction " }}}1
 
-" Checks if a bundle is 'disabled'. A bundle is considered 'disabled' if
-" its 'basename()' is included in g:pathogen_disabled[]' or ends in a tilde.
+" Check if a bundle is disabled.  A bundle is considered disabled if it ends
+" in a tilde or its basename or full name is included in the list
+" g:pathogen_disabled.
 function! pathogen#is_disabled(path) " {{{1
   if a:path =~# '\~$'
     return 1
@@ -120,27 +130,48 @@ function! pathogen#is_disabled(path) " {{{1
     return 0
   endif
   let sep = pathogen#separator()
-  return index(g:pathogen_disabled, strpart(a:path, strridx(a:path, sep)+1)) != -1
+  let blacklist = g:pathogen_disabled
+  return index(blacklist, strpart(a:path, strridx(a:path, sep)+1)) != -1 && index(blacklist, a:path) != 1
 endfunction "}}}1
+
+" Prepend the given directory to the runtime path and append its corresponding
+" after directory.  If the directory is already included, move it to the
+" outermost position.  Wildcards are added as is.  Ending a path in /{} causes
+" all subdirectories to be added (except those in g:pathogen_disabled).
+function! pathogen#surround(path) abort " {{{1
+  let sep = pathogen#separator()
+  let rtp = pathogen#split(&rtp)
+  if a:path =~# '[\\/]{}$'
+    let path = fnamemodify(a:path[0:-4], ':p:s?[\\/]\=$??')
+    let before = filter(pathogen#glob_directories(path.sep.'*'), '!pathogen#is_disabled(v:val)')
+    let after  = filter(reverse(pathogen#glob_directories(path.sep."*".sep."after")), '!pathogen#is_disabled(v:val[0:-7])')
+    call filter(rtp,'v:val[0:strlen(path)-1] !=# path')
+  else
+    let path = fnamemodify(a:path, ':p:s?[\\/]\=$??')
+    let before = [path]
+    let after = [path . sep . 'after']
+    call filter(rtp, 'index(before + after, v:val) == -1')
+  endif
+  let &rtp = pathogen#join(before, rtp, after)
+  return &rtp
+endfunction " }}}1
 
 " Prepend all subdirectories of path to the rtp, and append all 'after'
 " directories in those subdirectories.
 function! pathogen#runtime_prepend_subdirectories(path) " {{{1
-  let sep    = pathogen#separator()
-  let before = filter(pathogen#glob_directories(a:path.sep."*"), '!pathogen#is_disabled(v:val)')
-  let after  = filter(pathogen#glob_directories(a:path.sep."*".sep."after"), '!pathogen#is_disabled(v:val[0:-7])')
-  let rtp = pathogen#split(&rtp)
-  let path = expand(a:path)
-  call filter(rtp,'v:val[0:strlen(path)-1] !=# path')
-  let &rtp = pathogen#join(pathogen#uniq(before + rtp + after))
-  return &rtp
+  if &verbose
+    echohl WarningMsg
+    echomsg 'pathogen#runtime_append_all_bundles() will be replaced by pathogen#incubate()'
+    echohl NONE
+  endif
+  return pathogen#surround(a:path . pathogen#separator() . '{}')
 endfunction " }}}1
 
-" For each directory in rtp, check for a subdirectory named dir.  If it
+" For each directory in rtp, check for the provided subdirectory.  If it
 " exists, add all subdirectories of that subdirectory to the rtp, immediately
 " after the original directory.  If no argument is given, 'bundle' is used.
 " Repeated calls with the same arguments are ignored.
-function! pathogen#runtime_append_all_bundles(...) " {{{1
+function! pathogen#incubate(...) abort " {{{1
   let sep = pathogen#separator()
   let name = a:0 ? a:1 : 'bundle'
   if "\n".s:done_bundles =~# "\\M\n".name."\n"
@@ -157,31 +188,54 @@ function! pathogen#runtime_append_all_bundles(...) " {{{1
   endfor
   let &rtp = pathogen#join(pathogen#uniq(list))
   return 1
+endfunction " }}}1
+
+" Deprecated alias for pathogen#incubate().
+function! pathogen#runtime_append_all_bundles(...) abort " {{{1
+  if &verbose
+    echohl WarningMsg
+    echomsg 'pathogen#runtime_append_all_bundles() will be renamed to pathogen#incubate()'
+    echohl NONE
+  endif
+  return call('pathogen#incubate', a:000)
 endfunction
 
 let s:done_bundles = ''
 " }}}1
 
 " Invoke :helptags on all non-$VIM doc directories in runtimepath.
-function! pathogen#helptags() " {{{1
+function! pathogen#helptags() abort " {{{1
   let sep = pathogen#separator()
-  for dir in pathogen#split(&rtp)
-    if (dir.sep)[0 : strlen($VIMRUNTIME)] !=# $VIMRUNTIME.sep && filewritable(dir.sep.'doc') == 2 && !empty(filter(split(glob(dir.sep.'doc'.sep.'*'),"\n>"),'!isdirectory(v:val)')) && (!filereadable(dir.sep.'doc'.sep.'tags') || filewritable(dir.sep.'doc'.sep.'tags'))
-      helptags `=dir.'/doc'`
-    endif
+  for glob in pathogen#split(&rtp)
+    for dir in split(glob(glob), "\n")
+      if (dir.sep)[0 : strlen($VIMRUNTIME)] !=# $VIMRUNTIME.sep && filewritable(dir.sep.'doc') == 2 && !empty(filter(split(glob(dir.sep.'doc'.sep.'*'),"\n>"),'!isdirectory(v:val)')) && (!filereadable(dir.sep.'doc'.sep.'tags') || filewritable(dir.sep.'doc'.sep.'tags'))
+        helptags `=dir.'/doc'`
+      endif
+    endfor
   endfor
 endfunction " }}}1
 
 command! -bar Helptags :call pathogen#helptags()
 
+" Execute the given command.  This is basically a backdoor for --remote-expr.
+function! pathogen#execute(command) abort " {{{1
+  execute a:command
+  return ''
+endfunction " }}}1
+
 " Like findfile(), but hardcoded to use the runtimepath.
-function! pathogen#runtime_findfile(file,count) "{{{1
+function! pathogen#runtime_findfile(file,count) abort "{{{1
   let rtp = pathogen#join(1,pathogen#split(&rtp))
-  return fnamemodify(findfile(a:file,rtp,a:count),':p')
+  let file = findfile(a:file,rtp,a:count)
+  if file ==# ''
+    return ''
+  else
+    return fnamemodify(file,':p')
+  endif
 endfunction " }}}1
 
 " Backport of fnameescape().
-function! pathogen#fnameescape(string) " {{{1
+function! pathogen#fnameescape(string) abort " {{{1
   if exists('*fnameescape')
     return fnameescape(a:string)
   elseif a:string ==# '-'
@@ -191,17 +245,30 @@ function! pathogen#fnameescape(string) " {{{1
   endif
 endfunction " }}}1
 
+if exists(':Vedit')
+  finish
+endif
+
+let s:vopen_warning = 0
+
 function! s:find(count,cmd,file,lcd) " {{{1
   let rtp = pathogen#join(1,pathogen#split(&runtimepath))
   let file = pathogen#runtime_findfile(a:file,a:count)
   if file ==# ''
     return "echoerr 'E345: Can''t find file \"".a:file."\" in runtimepath'"
-  elseif a:lcd
+  endif
+  if !s:vopen_warning
+    let s:vopen_warning = 1
+    let warning = '|echohl WarningMsg|echo "Install scriptease.vim to continue using :V'.a:cmd.'"|echohl NONE'
+  else
+    let warning = ''
+  endif
+  if a:lcd
     let path = file[0:-strlen(a:file)-2]
     execute 'lcd `=path`'
-    return a:cmd.' '.pathogen#fnameescape(a:file)
+    return a:cmd.' '.pathogen#fnameescape(a:file) . warning
   else
-    return a:cmd.' '.pathogen#fnameescape(file)
+    return a:cmd.' '.pathogen#fnameescape(file) . warning
   endif
 endfunction " }}}1
 
@@ -219,7 +286,7 @@ function! s:Findcomplete(A,L,P) " {{{1
   else
     let request = a:A
   endif
-  let pattern = substitute(request,'\'.sep,'*'.sep,'g').'*'
+  let pattern = substitute(request,'/\|\'.sep,'*'.sep,'g').'*'
   let found = {}
   for path in pathogen#split(&runtimepath)
     let path = expand(path, ':p')
@@ -242,4 +309,4 @@ command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vtabed
 command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vpedit   :execute s:find(<count>,'pedit',<q-args>,<bang>1)
 command! -bar -bang -range=1 -nargs=1 -complete=customlist,s:Findcomplete Vread    :execute s:find(<count>,'read',<q-args>,<bang>1)
 
-" vim:set ft=vim ts=8 sw=2 sts=2:
+" vim:set et sw=2:
