@@ -13,6 +13,9 @@ endif
 
 colorscheme solarized
 
+" encoding
+set encoding=utf-8
+
 " style
 set number
 set autoindent
