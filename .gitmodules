@@ -40,3 +40,6 @@
 [submodule "bundle/repeat.vim"]
 	path = bundle/repeat.vim
 	url = git@github.com:tpope/vim-repeat.git
+[submodule "bundle/rspec.vim"]
+	path = bundle/rspec.vim
+	url = git://github.com/thoughtbot/vim-rspec.git

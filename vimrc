@@ -70,40 +70,9 @@ nnoremap <c-l> <c-w>l
 imap <c-l> <space>=><space>
 
 " RSpec
-map <Leader>, :call RunTest()<CR>
-map <Leader>. :call RunNearestTest()<CR>
-
-function! RunTest()
-  call RunTestFile(FindTestFile())
-endfunction
-
-function! RunNearestTest()
-  call RunTestFile(FindTestFile() . ':' . line('.'))
-endfunction
-
-function! FindTestFile()
-  let current_file = expand("%")
-
-  if match(current_file, '.feature$') == -1 && match(current_file, '_spec.rb$') == -1
-    let spec_file = current_file
-    let spec_file = substitute(spec_file, '^app/', 'spec/', '')
-    let spec_file = substitute(spec_file, '.rb$', '_spec.rb', '')
-
-    return spec_file
-  else
-    return current_file
-  endif
-endfunction
-
-function! RunTestFile(filename)
-  write
-
-  if filereadable('bin/rspec')
-    exec ":!bin/rspec " . a:filename
-  else
-    exec ":!bundle exec rspec " . a:filename
-  endif
-endfunction
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
 
 " Clear the search buffer when hitting return
 nnoremap <cr> :nohlsearch<cr>
