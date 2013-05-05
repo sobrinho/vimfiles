@@ -17,6 +17,7 @@ colorscheme solarized
 set number
 set autoindent
 set cursorline
+set ruler
 
 " whitespace
 set tabstop=2
