@@ -46,3 +46,6 @@
 [submodule "bundle/bundler.vim"]
 	path = bundle/bundler.vim
 	url = git://github.com/tpope/vim-bundler.git
+[submodule "bundle/tComment.vim"]
+	path = bundle/tComment.vim
+	url = https://github.com/vim-scripts/tComment.git
