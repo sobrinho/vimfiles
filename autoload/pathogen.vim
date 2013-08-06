@@ -1,11 +1,11 @@
 " pathogen.vim - path option manipulation
 " Maintainer:   Tim Pope <http://tpo.pe/>
-" Version:      2.0
+" Version:      2.2
 
 " Install in ~/.vim/autoload (or ~\vimfiles\autoload).
 "
 " For management of individually installed plugins in ~/.vim/bundle (or
-" ~\vimfiles\bundle), adding `call pathogen#infect()` to the top of your
+" ~\vimfiles\bundle), adding `execute pathogen#infect()` to the top of your
 " .vimrc is the only other setup necessary.
 "
 " The API is documented inline below.  For maximum ease of reading,
@@ -16,25 +16,31 @@ if exists("g:loaded_pathogen") || &cp
 endif
 let g:loaded_pathogen = 1
 
-" Point of entry for basic default usage.  Give a directory name to invoke
-" pathogen#incubate() (defaults to "bundle"), or a full path to invoke
+function! s:warn(msg)
+  echohl WarningMsg
+  echomsg a:msg
+  echohl NONE
+endfunction
+
+" Point of entry for basic default usage.  Give a relative path to invoke
+" pathogen#incubate() (defaults to "bundle/{}"), or an absolute path to invoke
 " pathogen#surround().  For backwards compatibility purposes, a full path that
 " does not end in {} or * is given to pathogen#runtime_prepend_subdirectories()
 " instead.
 function! pathogen#infect(...) abort " {{{1
-  let source_path = a:0 ? a:1 : 'bundle'
-  if source_path =~# '[\\/]\%({}\|\*\)$'
-    call pathogen#surround(source_path)
-  elseif source_path =~# '[\\/]'
-    if &verbose
-      echohl WarningMsg
-      echomsg 'pathogen#infect() will soon require a trailing "/{}" to absolute paths'
-      echohl NONE
+  for path in a:0 ? reverse(copy(a:000)) : ['bundle/{}']
+    if path =~# '^[^\\/]\+$'
+      call s:warn('Change pathogen#infect('.string(path).') to pathogen#infect('.string(path.'/{}').')')
+      call pathogen#incubate(path . '/{}')
+    elseif path =~# '^[^\\/]\+[\\/]\%({}\|\*\)$'
+      call pathogen#incubate(path)
+    elseif path =~# '[\\/]\%({}\|\*\)$'
+      call pathogen#surround(path)
+    else
+      call s:warn('Change pathogen#infect('.string(path).') to pathogen#infect('.string(path.'/{}').')')
+      call pathogen#surround(path . '/{}')
     endif
-    call pathogen#surround(source_path.'/{}')
-  else
-    call pathogen#incubate(source_path)
-  endif
+  endfor
   call pathogen#cycle_filetype()
   return ''
 endfunction " }}}1
@@ -157,23 +163,21 @@ function! pathogen#surround(path) abort " {{{1
 endfunction " }}}1
 
 " Prepend all subdirectories of path to the rtp, and append all 'after'
-" directories in those subdirectories.
+" directories in those subdirectories.  Deprecated.
 function! pathogen#runtime_prepend_subdirectories(path) " {{{1
-  if &verbose
-    echohl WarningMsg
-    echomsg 'pathogen#runtime_append_all_bundles() will be replaced by pathogen#incubate()'
-    echohl NONE
-  endif
+  call s:warn('Change pathogen#runtime_prepend_subdirectories('.string(a:path).') to pathogen#surround('.string(a:path.'/{}').')')
   return pathogen#surround(a:path . pathogen#separator() . '{}')
 endfunction " }}}1
 
-" For each directory in rtp, check for the provided subdirectory.  If it
-" exists, add all subdirectories of that subdirectory to the rtp, immediately
-" after the original directory.  If no argument is given, 'bundle' is used.
-" Repeated calls with the same arguments are ignored.
+" For each directory in the runtime path, add a second entry with the given
+" argument appended.  If the argument ends in '/{}', add a separate entry for
+" each subdirectory.  The default argument is 'bundle/{}', which means that
+" .vim/bundle/*, $VIM/vimfiles/bundle/*, $VIMRUNTIME/bundle/*,
+" $VIM/vim/files/bundle/*/after, and .vim/bundle/*/after will be added (on
+" UNIX).
 function! pathogen#incubate(...) abort " {{{1
   let sep = pathogen#separator()
-  let name = a:0 ? a:1 : 'bundle'
+  let name = a:0 ? a:1 : 'bundle/{}'
   if "\n".s:done_bundles =~# "\\M\n".name."\n"
     return ""
   endif
@@ -181,9 +185,17 @@ function! pathogen#incubate(...) abort " {{{1
   let list = []
   for dir in pathogen#split(&rtp)
     if dir =~# '\<after$'
-      let list +=  filter(pathogen#glob_directories(substitute(dir,'after$',name,'').sep.'*[^~]'.sep.'after'), '!pathogen#is_disabled(v:val[0:-7])') + [dir]
+      if name =~# '{}$'
+        let list +=  filter(pathogen#glob_directories(substitute(dir,'after$',name[0:-3],'').'*'.sep.'after'), '!pathogen#is_disabled(v:val[0:-7])') + [dir]
+      else
+        let list += [dir, substitute(dir, 'after$', '', '') . name . sep . 'after']
+      endif
     else
-      let list +=  [dir] + filter(pathogen#glob_directories(dir.sep.name.sep.'*[^~]'), '!pathogen#is_disabled(v:val)')
+      if name =~# '{}$'
+        let list +=  [dir] + filter(pathogen#glob_directories(dir.sep.name[0:-3].'*'), '!pathogen#is_disabled(v:val)')
+      else
+        let list += [dir . sep . name, dir]
+      endif
     endif
   endfor
   let &rtp = pathogen#join(pathogen#uniq(list))
@@ -192,12 +204,12 @@ endfunction " }}}1
 
 " Deprecated alias for pathogen#incubate().
 function! pathogen#runtime_append_all_bundles(...) abort " {{{1
-  if &verbose
-    echohl WarningMsg
-    echomsg 'pathogen#runtime_append_all_bundles() will be renamed to pathogen#incubate()'
-    echohl NONE
+  if a:0
+    call s:warn('Change pathogen#runtime_append_all_bundles('.string(a:1).') to pathogen#incubate('.string(a:1.'/{}').')')
+  else
+    call s:warn('Change pathogen#runtime_append_all_bundles() to pathogen#incubate()')
   endif
-  return call('pathogen#incubate', a:000)
+  return call('pathogen#incubate', map(copy(a:000),'v:val . "/{}"'))
 endfunction
 
 let s:done_bundles = ''
@@ -209,7 +221,7 @@ function! pathogen#helptags() abort " {{{1
   for glob in pathogen#split(&rtp)
     for dir in split(glob(glob), "\n")
       if (dir.sep)[0 : strlen($VIMRUNTIME)] !=# $VIMRUNTIME.sep && filewritable(dir.sep.'doc') == 2 && !empty(filter(split(glob(dir.sep.'doc'.sep.'*'),"\n>"),'!isdirectory(v:val)')) && (!filereadable(dir.sep.'doc'.sep.'tags') || filewritable(dir.sep.'doc'.sep.'tags'))
-        helptags `=dir.'/doc'`
+        silent! execute 'helptags' pathogen#fnameescape(dir.'/doc')
       endif
     endfor
   endfor
@@ -218,8 +230,10 @@ endfunction " }}}1
 command! -bar Helptags :call pathogen#helptags()
 
 " Execute the given command.  This is basically a backdoor for --remote-expr.
-function! pathogen#execute(command) abort " {{{1
-  execute a:command
+function! pathogen#execute(...) abort " {{{1
+  for command in a:000
+    execute command
+  endfor
   return ''
 endfunction " }}}1
 
