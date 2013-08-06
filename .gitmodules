@@ -9,7 +9,7 @@
 	url = https://github.com/tpope/vim-endwise.git
 [submodule "bundle/fugitive.vim"]
 	path = bundle/fugitive.vim
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/markdown.vim"]
 	path = bundle/markdown.vim
 	url = https://github.com/tpope/vim-markdown.git
@@ -33,19 +33,19 @@
 	url = https://github.com/derekwyatt/vim-scala.git
 [submodule "bundle/coffescript.vim"]
 	path = bundle/coffescript.vim
-	url = git://github.com/kchmck/vim-coffee-script.git
+	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/repeat.vim"]
 	path = bundle/repeat.vim
 	url = git@github.com:tpope/vim-repeat.git
 [submodule "bundle/rspec.vim"]
 	path = bundle/rspec.vim
-	url = git://github.com/thoughtbot/vim-rspec.git
+	url = https://github.com/thoughtbot/vim-rspec.git
 [submodule "bundle/syntastic.vim"]
 	path = bundle/syntastic.vim
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/bundler.vim"]
 	path = bundle/bundler.vim
-	url = git://github.com/tpope/vim-bundler.git
+	url = https://github.com/tpope/vim-bundler.git
 [submodule "bundle/tComment.vim"]
 	path = bundle/tComment.vim
 	url = https://github.com/vim-scripts/tComment.git
