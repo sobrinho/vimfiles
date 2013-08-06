@@ -40,3 +40,6 @@
 [submodule "bundle/rspec.vim"]
 	path = bundle/rspec.vim
 	url = git://github.com/thoughtbot/vim-rspec.git
+[submodule "bundle/syntastic.vim"]
+	path = bundle/syntastic.vim
+	url = https://github.com/scrooloose/syntastic.git

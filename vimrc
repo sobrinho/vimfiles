@@ -71,6 +71,9 @@ nnoremap <c-l> <c-w>l
 set splitbelow
 set splitright
 
+" Configure syntastic syntax checking to check on open as well as save
+let g:syntastic_check_on_open=1
+
 " Ruby
 imap <c-l> <space>=><space>
 
