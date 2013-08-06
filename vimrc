@@ -67,6 +67,10 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
 " Ruby
 imap <c-l> <space>=><space>
 
