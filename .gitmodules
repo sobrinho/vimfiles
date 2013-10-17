@@ -49,3 +49,6 @@
 [submodule "bundle/tComment.vim"]
 	path = bundle/tComment.vim
 	url = https://github.com/vim-scripts/tComment.git
+[submodule "bundle/sleuth.vim"]
+	path = bundle/sleuth.vim
+	url = https://github.com/tpope/vim-sleuth.git
