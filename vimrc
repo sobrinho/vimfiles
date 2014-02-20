@@ -19,6 +19,9 @@ set autoindent
 set cursorline
 set ruler
 
+set colorcolumn=80
+autocmd FileType gitcommit setlocal colorcolumn=72
+
 " whitespace
 set list
 set listchars=tab:\ \ ,trail:·
