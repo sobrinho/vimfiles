@@ -32,6 +32,12 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Spell checking
+"
+" See: http://robots.thoughtbot.com/vim-spell-checking/
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.md setlocal complete+=kspell
+
 " Display incomplete commands
 set showcmd
 
