@@ -83,6 +83,8 @@ let g:syntastic_check_on_open=1
 imap <c-l> <space>=><space>
 
 " RSpec
+let g:rspec_command = "!bin/rspec {spec}"
+
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
