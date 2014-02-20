@@ -55,3 +55,6 @@
 [submodule "bundle/afterimage.vim"]
 	path = bundle/afterimage.vim
 	url = https://github.com/tpope/vim-afterimage.git
+[submodule "bundle/jst.vim"]
+	path = bundle/jst.vim
+	url = https://github.com/briancollins/vim-jst.git
