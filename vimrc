@@ -5,7 +5,6 @@ execute pathogen#infect()
 syntax on
 
 if has('gui_running')
-  set guifont=Monaco:h14
   set background=light
 else
   set background=dark
