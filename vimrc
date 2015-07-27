@@ -62,8 +62,8 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-" NERDTree
-map <Leader>n :NERDTreeToggle<CR>
+" netrw
+map <Leader>n :Explore<CR>
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j

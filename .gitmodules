@@ -10,9 +10,6 @@
 [submodule "bundle/markdown.vim"]
 	path = bundle/markdown.vim
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "bundle/nerdtree.vim"]
-	path = bundle/nerdtree.vim
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/rails.vim"]
 	path = bundle/rails.vim
 	url = https://github.com/tpope/vim-rails.git
