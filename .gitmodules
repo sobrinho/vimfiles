@@ -25,9 +25,6 @@
 [submodule "bundle/surround.vim"]
 	path = bundle/surround.vim
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/scala.vim"]
-	path = bundle/scala.vim
-	url = https://github.com/derekwyatt/vim-scala.git
 [submodule "bundle/coffescript.vim"]
 	path = bundle/coffescript.vim
 	url = https://github.com/kchmck/vim-coffee-script.git
