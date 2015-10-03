@@ -19,6 +19,8 @@ set cursorline
 set ruler
 
 set colorcolumn=80
+
+" git commits
 autocmd FileType gitcommit setlocal colorcolumn=72
 
 " whitespace
