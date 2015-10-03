@@ -106,8 +106,8 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
-" Clear the search buffer when hitting return
-nnoremap <cr> :nohlsearch<cr>
+" Clear the search buffer when hitting space
+nnoremap <space> :nohlsearch<cr>
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
