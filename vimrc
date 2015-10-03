@@ -116,5 +116,9 @@ nnoremap # :keepjumps normal! mi#`i<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" Copy and paste from external clipboard with <leader>c and <leader>p
+map <Leader>c y:call system("pbcopy", getreg(""))<CR>
+map <Leader>p :call setreg("d", system("pbpaste"))<CR>"dp
+
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
