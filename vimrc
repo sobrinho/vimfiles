@@ -72,8 +72,10 @@ map [q :cprev<CR>
 set splitbelow
 set splitright
 
-" Configure syntastic syntax checking to check on open as well as save
+" Syntastic
 let g:syntastic_check_on_open=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
 
 " Ruby
 imap <c-l> <space>=><space>
