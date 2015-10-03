@@ -97,7 +97,8 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" bind \ (backward slash) to grep shortcut
+" This defines a new command Ag to search for the provided text and open a
+" quickfix window
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 " Clear the search buffer when hitting space
