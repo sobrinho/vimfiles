@@ -112,5 +112,9 @@ nnoremap <space> :nohlsearch<cr>
 nnoremap * :keepjumps normal! mi*`i<CR>
 nnoremap # :keepjumps normal! mi#`i<CR>
 
+" Keep visual selection while indenting with < and >
+vnoremap < <gv
+vnoremap > >gv
+
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
