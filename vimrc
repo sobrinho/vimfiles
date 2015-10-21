@@ -56,7 +56,25 @@ augroup resCur
 augroup END
 
 " netrw
-map <Leader>n :Explore<CR>
+function! ToggleExplorer()
+    if exists("g:expl_buf_num")
+        let expl_buf_num = bufwinnr(g:expl_buf_num)
+
+        unlet g:expl_buf_num
+
+        if expl_buf_num != -1
+            exec expl_buf_num . 'q'
+        else
+            call ToggleExplorer()
+        endif
+    else
+        Explore
+
+        let g:expl_buf_num = bufnr("%")
+    endif
+endfunction
+
+map <silent> <Leader>n :call ToggleExplorer()<CR>
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
