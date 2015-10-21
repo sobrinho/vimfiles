@@ -46,3 +46,12 @@
 [submodule "bundle/jst.vim"]
 	path = bundle/jst.vim
 	url = https://github.com/briancollins/vim-jst.git
+[submodule "bundle/vim-abolish"]
+	path = bundle/vim-abolish
+	url = git://github.com/tpope/vim-abolish.git
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion
+[submodule "bundle/vim-vinegar"]
+	path = bundle/vim-vinegar
+	url = git://github.com/tpope/vim-vinegar.git
