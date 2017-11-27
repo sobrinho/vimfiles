@@ -37,9 +37,6 @@
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion
-[submodule "bundle/vim-vinegar"]
-	path = bundle/vim-vinegar
-	url = git://github.com/tpope/vim-vinegar.git
 [submodule "bundle/ayu-vim"]
 	path = bundle/ayu-vim
 	url = git@github.com:ayu-theme/ayu-vim.git
