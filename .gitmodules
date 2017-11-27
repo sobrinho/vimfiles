@@ -22,9 +22,6 @@
 [submodule "bundle/rspec.vim"]
 	path = bundle/rspec.vim
 	url = https://github.com/thoughtbot/vim-rspec.git
-[submodule "bundle/syntastic.vim"]
-	path = bundle/syntastic.vim
-	url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/bundler.vim"]
 	path = bundle/bundler.vim
 	url = https://github.com/tpope/vim-bundler.git
