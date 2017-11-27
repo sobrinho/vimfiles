@@ -135,18 +135,12 @@ vnoremap > >gv
 map <Leader>c y:call system("pbcopy", getreg(""))<CR>
 map <Leader>p :call setreg("d", system("pbpaste"))<CR>"dp
 
-" Rename current file
-function! Rename()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-
-map <Leader>r :call Rename()<CR>
-
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
+
+" IndentLine {{
+let g:indentLine_char = '¦'
+let g:indentLine_first_char = '¦'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+" }}
