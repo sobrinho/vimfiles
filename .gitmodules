@@ -22,9 +22,6 @@
 [submodule "bundle/surround.vim"]
 	path = bundle/surround.vim
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/coffescript.vim"]
-	path = bundle/coffescript.vim
-	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/repeat.vim"]
 	path = bundle/repeat.vim
 	url = https://github.com/tpope/vim-repeat.git
