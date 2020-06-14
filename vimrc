@@ -163,15 +163,3 @@ autocmd FileType vue syntax sync fromstart
 "
 " https://github.com/SpaceVim/SpaceVim/issues/1714
 let g:omni_sql_no_default_maps = 1
-
-" ALPHA: IMAGE LOAD
-"
-" TODO: SVG is not working as expected.
-command! -nargs=0 Image call DisplayImage()
-
-au BufRead *.png,*.jpg,*.jpeg,*.svg :call DisplayImage()
-
-function! DisplayImage()
-  set nowrap
-  term convert '%' jpg:- | jp2a --colors -i -
-endfunction
