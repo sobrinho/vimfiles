@@ -148,17 +148,6 @@ map <Leader>i :IndentLinesToggle<CR>
 " Especially in files that include multiple languages, it can get confused.
 autocmd FileType vue syntax sync fromstart
 
-" Folding
-"
-" See https://vim.fandom.com/wiki/Folding
-" augroup vimrc
-  " au BufReadPre * setlocal foldmethod=indent
-  " au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-" augroup END
-
-" nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-" vnoremap <Space> zf
-
 " Disable autocomplete for sql files
 "
 " https://github.com/SpaceVim/SpaceVim/issues/1714
