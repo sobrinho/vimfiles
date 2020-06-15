@@ -55,3 +55,6 @@
 [submodule "pack/plugins/start/ayu-vim"]
 	path = pack/plugins/start/ayu-vim
 	url = https://github.com/ayu-theme/ayu-vim.git
+[submodule "pack/plugins/start/vim-graphql"]
+	path = pack/plugins/start/vim-graphql
+	url = https://github.com/jparise/vim-graphql.git
