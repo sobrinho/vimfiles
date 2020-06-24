@@ -22,9 +22,6 @@
 [submodule "bundle/rspec.vim"]
 	path = bundle/rspec.vim
 	url = https://github.com/thoughtbot/vim-rspec.git
-[submodule "bundle/bundler.vim"]
-	path = bundle/bundler.vim
-	url = https://github.com/tpope/vim-bundler.git
 [submodule "bundle/tComment.vim"]
 	path = bundle/tComment.vim
 	url = https://github.com/vim-scripts/tComment.git
@@ -58,3 +55,6 @@
 [submodule "pack/plugins/start/vim-graphql"]
 	path = pack/plugins/start/vim-graphql
 	url = https://github.com/jparise/vim-graphql.git
+[submodule "pack/plugins/start/vim-endwise"]
+	path = pack/plugins/start/vim-endwise
+	url = https://github.com/tpope/vim-endwise.git
