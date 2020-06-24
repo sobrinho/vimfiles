@@ -58,3 +58,6 @@
 [submodule "pack/plugins/start/vim-endwise"]
 	path = pack/plugins/start/vim-endwise
 	url = https://github.com/tpope/vim-endwise.git
+[submodule "pack/plugins/start/vim-bundler"]
+	path = pack/plugins/start/vim-bundler
+	url = https://github.com/tpope/vim-bundler.git
