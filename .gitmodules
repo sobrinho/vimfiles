@@ -61,3 +61,6 @@
 [submodule "pack/plugins/start/vim-bundler"]
 	path = pack/plugins/start/vim-bundler
 	url = https://github.com/tpope/vim-bundler.git
+[submodule "pack/plugins/start/vim-ruby"]
+	path = pack/plugins/start/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
