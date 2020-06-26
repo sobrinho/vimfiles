@@ -7,9 +7,6 @@
 [submodule "bundle/markdown.vim"]
 	path = bundle/markdown.vim
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "bundle/rails.vim"]
-	path = bundle/rails.vim
-	url = https://github.com/tpope/vim-rails.git
 [submodule "bundle/ruby.vim"]
 	path = bundle/ruby.vim
 	url = https://github.com/vim-ruby/vim-ruby.git
@@ -64,3 +61,6 @@
 [submodule "pack/plugins/start/vim-ruby"]
 	path = pack/plugins/start/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "pack/plugins/start/vim-rails"]
+	path = pack/plugins/start/vim-rails
+	url = https://github.com/tpope/vim-rails.git
