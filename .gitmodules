@@ -82,3 +82,6 @@
 [submodule "pack/plugins/start/scss-syntax"]
 	path = pack/plugins/start/scss-syntax
 	url = https://github.com/cakebaker/scss-syntax.vim.git
+[submodule "pack/plugins/start/typescript-vim"]
+	path = pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
