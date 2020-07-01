@@ -98,10 +98,11 @@ map <Leader>l :call RunLastSpec()<CR>
 " FZF
 set rtp+=/usr/local/opt/fzf
 
-map <Leader>f :Files<CR>
+map <Leader>f :GFiles --cached --others --exclude-standard<CR>
 map <Leader>b :Buffers<CR>
 
 " Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],

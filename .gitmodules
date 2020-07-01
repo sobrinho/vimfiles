@@ -31,9 +31,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "bundle/fzf.vim"]
-	path = bundle/fzf.vim
-	url = git@github.com:junegunn/fzf.vim.git
 [submodule "bundle/vim-jsx-typescript"]
 	path = bundle/vim-jsx-typescript
 	url = https://github.com/peitalin/vim-jsx-typescript.git
@@ -85,3 +82,6 @@
 [submodule "pack/plugins/start/vim-fugitive"]
 	path = pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/plugins/start/fzf.vim"]
+	path = pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
