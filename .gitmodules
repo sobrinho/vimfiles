@@ -1,9 +1,6 @@
 [submodule "bundle/endwise.vim"]
 	path = bundle/endwise.vim
 	url = https://github.com/tpope/vim-endwise.git
-[submodule "bundle/fugitive.vim"]
-	path = bundle/fugitive.vim
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/markdown.vim"]
 	path = bundle/markdown.vim
 	url = https://github.com/tpope/vim-markdown.git
@@ -85,3 +82,6 @@
 [submodule "pack/plugins/start/typescript-vim"]
 	path = pack/plugins/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "pack/plugins/start/vim-fugitive"]
+	path = pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
