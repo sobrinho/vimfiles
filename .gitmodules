@@ -25,9 +25,6 @@
 [submodule "bundle/ayu-vim"]
 	path = bundle/ayu-vim
 	url = git@github.com:ayu-theme/ayu-vim.git
-[submodule "bundle/indentLine"]
-	path = bundle/indentLine
-	url = git@github.com:Yggdroot/indentLine.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
