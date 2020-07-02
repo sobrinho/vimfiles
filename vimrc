@@ -129,12 +129,13 @@ map <Leader>p "+p
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
-" IndentLine {{
+" indentLine
 let g:indentLine_char = '¦'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 
-map <Leader>i :IndentLinesToggle<CR>
+autocmd BufEnter NERD_tree* :IndentLinesDisable
+autocmd FileType json :IndentLinesDisable
 
 " Vue
 "
