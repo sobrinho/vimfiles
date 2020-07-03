@@ -79,9 +79,6 @@
 [submodule "pack/plugins/start/fzf.vim"]
 	path = pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "pack/plugins/start/nerdtree"]
-	path = pack/plugins/start/nerdtree
-	url = https://github.com/preservim/nerdtree.git
 [submodule "pack/plugins/start/indentLine"]
 	path = pack/plugins/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
