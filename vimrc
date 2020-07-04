@@ -1,6 +1,3 @@
-" pathogen
-execute pathogen#infect()
-
 " colors
 syntax on
 
