@@ -10,9 +10,6 @@
 [submodule "bundle/surround.vim"]
 	path = bundle/surround.vim
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/sleuth.vim"]
-	path = bundle/sleuth.vim
-	url = https://github.com/tpope/vim-sleuth.git
 [submodule "bundle/ayu-vim"]
 	path = bundle/ayu-vim
 	url = git@github.com:ayu-theme/ayu-vim.git
@@ -82,3 +79,6 @@
 [submodule "pack/plugins/start/vim-repeat"]
 	path = pack/plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "pack/plugins/start/vim-sleuth"]
+	path = pack/plugins/start/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth.git
