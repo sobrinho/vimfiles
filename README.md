@@ -5,7 +5,7 @@ Almost vanilla but with a few useful plugins instead of a heavy setup like prett
 ## Usage
 
 ```bash
-git clone https://github.com/tpope/vim-markdown.git ~/.vim
+git clone https://github.com/sobrinho/vimfiles.git ~/.vim
 ```
 
 ## Credits
