@@ -38,7 +38,7 @@ set scrolloff=3
 set wildmode=longest,list
 
 " Enable mouse bindings
-set mouse=a
+" set mouse=a
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
