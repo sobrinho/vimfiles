@@ -88,3 +88,6 @@
 [submodule "pack/plugins/start/nerdtree"]
 	path = pack/plugins/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/plugins/start/vim-polyglot"]
+	path = pack/plugins/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
