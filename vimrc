@@ -12,7 +12,6 @@ colorscheme ayu
 
 " style
 set number
-set relativenumber
 set autoindent
 set cursorline
 set ruler
