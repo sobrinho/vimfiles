@@ -125,19 +125,22 @@ map <Leader>p "+p
 filetype plugin indent on
 
 " indentLine
-let g:indentLine_char = '¦'
+" let g:indentLine_char = '|'
+" let g:indentLine_first_char = ''
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
 
-autocmd FileType json :IndentLinesDisable
+" JSON
+" autocmd FileType json :IndentLinesDisable
 
 " Vue
 "
 " This is because Vim tries to highlight text in an efficient way.
 " Especially in files that include multiple languages, it can get confused.
-autocmd FileType vue syntax sync fromstart
+" autocmd FileType vue syntax sync fromstart
 
-" Disable autocomplete for sql files
+" Disable autocomplete for SQL files
 "
 " https://github.com/SpaceVim/SpaceVim/issues/1714
 let g:omni_sql_no_default_maps = 1
@@ -146,5 +149,5 @@ let g:omni_sql_no_default_maps = 1
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
 " Folding
-set foldmethod=syntax
-set foldlevel=99
+" set foldmethod=syntax
+" set foldlevel=99
