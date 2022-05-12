@@ -73,6 +73,12 @@ set splitright
 " Ruby
 imap <c-l> <space>=><space>
 
+let g:ruby_heredoc_syntax_filetypes = {
+        \ "graphql" : {
+        \   "start" : "GRAPHQL\|GQL",
+        \},
+  \}
+
 " FZF
 set rtp+=/usr/local/opt/fzf
 
