@@ -102,6 +102,10 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" NERDTree
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>N :NERDTreeFind<CR>
+
 " Clear the search buffer when hitting space
 nnoremap <space> :nohlsearch<CR>
 
