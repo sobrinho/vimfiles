@@ -80,7 +80,7 @@ let g:ruby_heredoc_syntax_filetypes = {
   \}
 
 " FZF
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 
 map <Leader>f :GFiles --cached --others --exclude-standard<CR>
 map <Leader>b :Buffers<CR>
