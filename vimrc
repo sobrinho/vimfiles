@@ -74,6 +74,9 @@ set splitright
 imap <c-l> <space>=><space>
 
 let g:ruby_heredoc_syntax_filetypes = {
+        \ "sql" : {
+        \   "start" : "SQL",
+        \},
         \ "graphql" : {
         \   "start" : "GRAPHQL\|GQL",
         \},
