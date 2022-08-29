@@ -67,9 +67,6 @@
 [submodule "pack/plugins/start/vim-markdown"]
 	path = pack/plugins/start/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "pack/plugins/start/ale"]
-	path = pack/plugins/start/ale
-	url = https://github.com/dense-analysis/ale.git
 [submodule "pack/plugins/start/nerdtree"]
 	path = pack/plugins/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
